@@ -1,12 +1,11 @@
 package noticracia;
 
 import noticracia.entities.InformationSource;
+import noticracia.mappers.InformationMapper;
 import noticracia.services.HttpListenerService;
 import noticracia.services.UpdateHandlerService;
 
-import java.util.Arrays;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 public class PajaritoInformationSource extends InformationSource {
     private final HttpListenerService httpListenerService;
@@ -32,9 +31,7 @@ public class PajaritoInformationSource extends InformationSource {
 
     @Override
     public Map<String, String> mapInformation(Object result) {
-        return  Arrays.stream(((String) result).split("<>"))
-                .map(pair -> pair.split("==="))
-                .collect(Collectors.toMap(parts -> parts[0].trim(), parts -> parts[1].trim()));
+        return new InformationMapper().mapInformation((String) result);
     }
 
 }
