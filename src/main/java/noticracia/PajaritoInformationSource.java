@@ -2,26 +2,27 @@ package noticracia;
 
 import noticracia.entities.InformationSource;
 import noticracia.mappers.InformationMapper;
-import noticracia.services.HttpListenerService;
+import noticracia.services.ServerService;
 import noticracia.services.UpdateHandlerService;
 
+import java.util.HashMap;
 import java.util.Map;
 
 public class PajaritoInformationSource extends InformationSource {
-    private final HttpListenerService httpListenerService;
+    private final ServerService serverService;
 
     public PajaritoInformationSource() {
-        this.httpListenerService = new HttpListenerService();
+        this.serverService = new ServerService();
     }
 
     @Override
     public void start(String searchCriteria) {
-        httpListenerService.startServer(new UpdateHandlerService(this), 8080);
+        serverService.startServer(new UpdateHandlerService(this), 8080);
     }
 
     @Override
     public void stop() {
-        httpListenerService.stopServer();
+        serverService.stopServer();
     }
 
     @Override
