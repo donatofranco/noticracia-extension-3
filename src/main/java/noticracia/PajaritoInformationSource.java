@@ -18,7 +18,7 @@ public class PajaritoInformationSource extends InformationSource {
     @Override
     public void start(String searchCriteria) {
         this.searchCriteria = searchCriteria;
-        serverService.startServer(new UpdateHandlerService(this), 8080);
+        serverService.startServer(new UpdateHandlerService(this), 8083);
     }
 
     @Override
